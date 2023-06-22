@@ -16,9 +16,24 @@ ascii_art = """\
  ╚═════╝ ╚═╝        ╚═╝       ╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝   
 """
 
+goodbye = """
+ ██████╗  ██████╗  ██████╗ ██████╗ ██████╗ ██╗   ██╗███████╗
+██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝
+██║  ███╗██║   ██║██║   ██║██║  ██║██████╔╝ ╚████╔╝ █████╗  
+██║   ██║██║   ██║██║   ██║██║  ██║██╔══██╗  ╚██╔╝  ██╔══╝  
+╚██████╔╝╚██████╔╝╚██████╔╝██████╔╝██████╔╝   ██║   ███████╗
+ ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝ ╚═════╝    ╚═╝   ╚══════╝
+"""
+
 from rgbprint import gradient_print, Color
 gradient_print(
     ascii_art,
+    start_color=Color.light_green, 
+    end_color=Color.dark_green
+)
+
+gradient_print(
+    "Version Alpha 0.1.0\nBy: Kalmix",
     start_color=Color.light_green, 
     end_color=Color.dark_green
 )
@@ -106,6 +121,11 @@ def main():
         repeat_choice = inquirer.prompt(repeat_choices, theme=GreenPassion())['repeat']
 
         if repeat_choice == 'No':
+            gradient_print(
+                goodbye,
+                start_color=Color.light_green, 
+                end_color=Color.dark_green
+            )
             break
 
 
