@@ -41,36 +41,55 @@ def select_model():
 
 
 def main():
-    prompt = prompt_essay_topic()
-    model = select_model()
+    while True:
+        prompt = prompt_essay_topic()
+        model = select_model()
 
-    # Generate the essay
-    with Halo(text='Generating your essay [📜]', spinner='dots2', text_color="green"):
-        essay = generate_essay(prompt, model)
+        # Generate the essay
+        with Halo(text='Generating your essay [📜]', spinner='dots2', text_color="green"):
+            essay = generate_essay(prompt, model)
 
-    if essay:
-        print(colored("[📜] Generated Essay:", "green"))
-        print(essay)
+        if essay:
+            print(colored("[📜] Generated Essay:", "green"))
+            print(essay)
 
-        # Choose whether to export to PDF
-        export_choices = [
+            # Choose whether to export to PDF
+            export_choices = [
+                inquirer.List(
+                    'export',
+                    message="Export to PDF? [📖]",
+                    choices=[
+                        'Yes',
+                        'No'
+                    ],
+                ),
+            ]
+
+            export_choice = inquirer.prompt(export_choices, theme=GreenPassion())['export']
+
+            if export_choice == "Yes":
+                output_path = save_essay_as_pdf(essay, essay.splitlines()[0])
+                print(colored("[✅] PDF saved successfully (Ctrl + Click to go to Path):", "green"), output_path)
+            else:
+                print(colored("[❌] PDF not exported.", "red"))
+
+        # Ask if the user wants to do another generation
+        repeat_choices = [
             inquirer.List(
-                'export',
-                message="Export to PDF? [📖]",
+                'repeat',
+                message="Do you want to generate another essay? [🔁]",
                 choices=[
                     'Yes',
                     'No'
-                ],
+                ], 
             ),
         ]
 
-        export_choice = inquirer.prompt(export_choices, theme=GreenPassion())['export']
+        repeat_choice = inquirer.prompt(repeat_choices, theme=GreenPassion())['repeat']
 
-        if export_choice == "Yes":
-            output_path = save_essay_as_pdf(essay, essay.splitlines()[0])
-            print(colored("[✅] PDF saved successfully (Ctrl + Click to go to Path):", "green"), output_path)
-        else:
-            print(colored("[❌] PDF not exported.", "red"))
+        if repeat_choice == 'No':
+            break
+
 
 
 if __name__ == '__main__':

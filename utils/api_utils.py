@@ -1,7 +1,7 @@
 import requests
 
-API_URL = 
-OPENAI_API_KEY =
+API_URL = 'https://free.churchless.tech/v1/chat/completions'
+OPENAI_API_KEY = 'MyDiscord'
 
 HEADERS = {
     'Content-Type': 'application/json',
