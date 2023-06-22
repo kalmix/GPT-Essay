@@ -4,6 +4,24 @@ from termcolor import colored
 from halo import Halo
 from utils.api_utils import generate_essay
 from utils.pdf_utils import save_essay_as_pdf
+from rgbprint import gradient_print, Color
+
+# Print the title
+ascii_art = """\
+ ██████╗ ██████╗ ████████╗    ███████╗███████╗███████╗ █████╗ ██╗   ██╗
+██╔════╝ ██╔══██╗╚══██╔══╝    ██╔════╝██╔════╝██╔════╝██╔══██╗╚██╗ ██╔╝
+██║  ███╗██████╔╝   ██║       █████╗  ███████╗███████╗███████║ ╚████╔╝ 
+██║   ██║██╔═══╝    ██║       ██╔══╝  ╚════██║╚════██║██╔══██║  ╚██╔╝  
+╚██████╔╝██║        ██║       ███████╗███████║███████║██║  ██║   ██║   
+ ╚═════╝ ╚═╝        ╚═╝       ╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝   
+"""
+
+from rgbprint import gradient_print, Color
+gradient_print(
+    ascii_art,
+    start_color=Color.light_green, 
+    end_color=Color.dark_green
+)
 
 
 def prompt_essay_topic():
