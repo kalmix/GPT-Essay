@@ -2,3 +2,4 @@ fpdf==1.7.2
 inquirer==2.7.0
 termcolor==1.1.0
 halo==0.0.31
+rgbprint
